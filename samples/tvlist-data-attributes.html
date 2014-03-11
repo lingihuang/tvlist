@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="Vivian Huang">
+<meta name="created" content="2012-11-06">
+<title>TVList Data Attributes Demo</title>
+<link rel="stylesheet" href="http://yui.yahooapis.com/3.7.2/build/cssreset/reset-min.css">
+<link rel="stylesheet" href="http://yui.yahooapis.com/3.7.2/build/cssfonts/fonts-min.css">
+<script type="text/javascript" src="http://yui.yahooapis.com/3.7.2/build/yui/yui-min.js"></script>
+<script type="text/javascript" src="../tvlist.js"></script>
+<style type="text/css">
+html, body {
+    background: #000;
+    font-family: "Hei W5", "DFHeiStd-W5", "DFYuanStd-W7", "微軟正黑體";
+}
+.clearfix {
+    zoom: 1;
+}
+.clearfix:after {
+    clear: both;
+    content: "";
+    display: block;
+}
+.list {
+    height: 360px;
+    overflow: hidden;
+    width: 1280px;
+}
+.list .item {
+    background: #cceeff;
+    border: 4px solid #33ccff;
+    color: #333;
+    float: left;
+    font-size: 197%;
+    height: 82px;
+    letter-spacing: 5px;
+    line-height: 3.5;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 248px;
+}
+.list .active-status {
+    background: #0088ff;
+    border-color: #0000e3;
+    color: #fff;
+}
+</style>
+</head>
+<body>
+    <div id="list" class="list">
+        <div class="row clearfix">
+            <a class="item" data-cid="1" data-cname="基隆市">基隆市</a>
+            <a class="item" data-cid="2" data-cname="台北市">台北市</a>
+            <a class="item" data-cid="3" data-cname="新北市">新北市</a>
+            <a class="item" data-cid="4" data-cname="桃園市">桃園市</a>
+            <a class="item" data-cid="5" data-cname="桃園縣">桃園縣</a>
+        </div>
+        <div class="row clearfix">
+            <a class="item" data-cid="6" data-cname="新竹市">新竹市</a>
+            <a class="item" data-cid="7" data-cname="新竹縣">新竹縣</a>
+            <a class="item" data-cid="8" data-cname="苗栗縣">苗栗縣</a>
+            <a class="item" data-cid="9" data-cname="台中市">台中市</a>
+            <a class="item" data-cid="10" data-cname="台中縣">台中縣</a>
+        </div>
+        <div class="row clearfix">
+            <a class="item" data-cid="11" data-cname="南投縣">南投縣</a>
+            <a class="item" data-cid="12" data-cname="彰化縣">彰化縣</a>
+            <a class="item" data-cid="13" data-cname="雲林縣">雲林縣</a>
+            <a class="item" data-cid="14" data-cname="嘉義市">嘉義市</a>
+            <a class="item" data-cid="15" data-cname="嘉義縣">嘉義縣</a>
+        </div>
+        <div class="row clearfix">
+            <a class="item" data-cid="16" data-cname="台南市">台南市</a>
+            <a class="item" data-cid="17" data-cname="台南縣">台南縣</a>
+            <a class="item" data-cid="18" data-cname="高雄市">高雄市</a>
+            <a class="item" data-cid="19" data-cname="高雄縣">高雄縣</a>
+            <a class="item" data-cid="20" data-cname="屏東縣">屏東縣</a>
+        </div>
+        <div class="row clearfix">
+            <a class="item" data-cid="21" data-cname="宜蘭縣">宜蘭縣</a>
+            <a class="item" data-cid="22" data-cname="花蓮縣">花蓮縣</a>
+            <a class="item" data-cid="23" data-cname="台東縣">台東縣</a>
+            <a class="item" data-cid="24" data-cname="澎湖縣">澎湖縣</a>
+            <a class="item" data-cid="25" data-cname="金門縣">金門縣</a>
+        </div>
+        <div class="row clearfix">
+            <a class="item" data-cid="26" data-cname="連江縣">連江縣</a>
+        </div>
+    </div>
+    <script>
+    YUI().use("tvlist", function (Y) {
+        var tvlist = new Y.TVList({
+            node    : "#list",
+            rows    : 4,
+            columns : 5,
+            activeIndex : 0,
+            activeClass : "active-status"
+        });
+        tvlist.on("move", function (e) {
+            Y.log("activeIndex = " + e.activeIndex);
+        });
+        tvlist.on("enter", function (e) {
+            Y.log(e.data);
+            Y.log("offset = " + e.offset);
+        });
+    });
+    </script>
+</body>
+</html>

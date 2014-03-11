@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="Vivian Huang">
+<meta name="created" content="2012-11-06">
+<title>TVList Single Row Demo</title>
+<link rel="stylesheet" href="http://yui.yahooapis.com/3.7.2/build/cssreset/reset-min.css">
+<link rel="stylesheet" href="http://yui.yahooapis.com/3.7.2/build/cssfonts/fonts-min.css">
+<script type="text/javascript" src="http://yui.yahooapis.com/3.7.2/build/yui/yui-min.js"></script>
+<script type="text/javascript" src="../tvlist.js"></script>
+<style type="text/css">
+html, body {
+    background: #000;
+    font-family: "Hei W5", "DFHeiStd-W5", "DFYuanStd-W7", "微軟正黑體";
+}
+.clearfix {
+    zoom: 1;
+}
+.clearfix:after {
+    clear: both;
+    content: "";
+    display: block;
+}
+.list {
+    background: #ff8c00;
+    overflow: hidden;
+    padding: 4px 6px;
+    width: 938px;
+}
+.list .item {
+    background: #faf09b;
+    color: #333;
+    float: left;
+    font-size: 197%;
+    line-height: 1.8;
+    margin: 3px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 150px;
+}
+.list .active-status {
+    background: #ffd700;
+}
+</style>
+</head>
+<body>
+    <div id="list" class="list"></div>
+
+    <script>
+    YUI().use("tvlist", function (Y) {
+        var tvlist;
+
+        tvlist = new Y.TVList({
+            node     : "#list",
+            rows     : 1,
+            columns  : 6,
+            activeIndex: 1,
+            activeClass: "active-status",
+            items: [
+                {html: '<a class="item">電影台</a>', data: {chid: 1, chname: "電影台"}},
+                {html: '<a class="item">體育台</a>', data: {chid: 2, chname: "體育台"}},
+                {html: '<a class="item">新聞台</a>', data: {chid: 3, chname: "新聞台"}},
+                {html: '<a class="item">綜藝台</a>', data: {chid: 4, chname: "綜藝台"}},
+                {html: '<a class="item">戲劇台</a>', data: {chid: 5, chname: "戲劇台"}},
+                {html: '<a class="item">音樂台</a>', data: {chid: 6, chname: "音樂台"}},
+            ]
+        });
+        tvlist.on("move", function (e) {
+            Y.log("activeIndex = " + e.activeIndex);
+        });
+        tvlist.on("enter", function (e) {
+            Y.log(e.data);
+            Y.log("offset = " + e.offset);
+        });
+
+    });
+    </script>
+</body>
+</html>
